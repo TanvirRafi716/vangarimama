@@ -4,22 +4,28 @@ A Flask-based web application that connects waste generators with local collecto
 
 ## Features
 
-- User authentication and roles (User, Collector, Admin)
-- Create, view, edit, and delete trash posts with location and images
-- Collector workflow to browse, accept, and complete pickups
-- Admin dashboard to manage users, posts, and system data
-- Reward/points system based on trash type and quantity
-- Mobile-friendly templates (Jinja2), custom CSS/JS
-- Database migrations with Alembic / Flask-Migrate
-- Environment-based configuration with `.env`
+- **User Registration**: Sign up as either a User (waste generator) or Collector
+- **Trash Posting**: Users can post trash details with location for collection
+- **Collection Management**: Collectors can browse, accept, and complete pickups
+- **Reward System**: Earn points based on trash type and quantity
+- **Real-time Dashboard**: Track posts, earnings, and collection status
+- **Responsive Design**: Works on desktop and mobile devices
 
 ## Tech Stack
 
-- Backend: Flask, Flask-Login, Flask-WTF, Flask-Migrate, SQLAlchemy
-- Database: PostgreSQL via `DATABASE_URL` (dev-friendly fallback to SQLite possible)
-- Frontend: Jinja2 templates, HTML, CSS, JavaScript
-- Image handling: Pillow (PIL)
-- Tooling: Python 3.11+, Alembic
+- **Backend**: Flask (Python)
+- **Database**: PostgreSQL with SQLAlchemy
+- **Frontend**: Bootstrap 5 with dark theme
+- **Authentication**: Flask-Login
+- **Icons**: Font Awesome 6
+
+## Local Development Setup (VS Code)
+
+### Prerequisites
+
+- Python 3.11+
+- PostgreSQL
+- VS Code
 
 ## Quick Start
 
