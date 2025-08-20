@@ -1,4 +1,4 @@
-# Vangari Mama (ScrapMama) — Trash Collection Marketplace
+# Vangari Mama  — Trash Collection Marketplace
 
 A Flask-based web application that connects waste generators with local collectors. Users can post trash for pickup, collectors can accept and complete jobs, and everyone can track progress through clean dashboards. The system includes role-based access, authentication, and a points-based rewards model.
 
