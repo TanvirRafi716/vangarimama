@@ -1,4 +1,4 @@
-# Vangari Mama  — Trash Collection Marketplace
+# VangariMama  — Trash Collection Marketplace
 
 A Flask-based web application that connects waste generators with local collectors. Users can post trash for pickup, collectors can accept and complete jobs, and everyone can track progress through clean dashboards. The system includes role-based access, authentication, and a points-based rewards model.
 
@@ -27,136 +27,82 @@ A Flask-based web application that connects waste generators with local collecto
 - PostgreSQL
 - VS Code
 
-## Quick Start
+### Installation
 
-### 1) Clone and set up a virtual environment
+1. Clone the repository and navigate to the project directory
+
+2. Create a virtual environment:
 ```bash
-git clone https://github.com/your-username/vangari-mama.git
-cd vangari-mama
 python -m venv venv
-# Linux/Mac
-source venv/bin/activate
-# Windows
-# venv\Scripts\activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-### 2) Install dependencies
+3. Install dependencies:
 ```bash
 pip install -r requirements_for_vscode.txt
 ```
 
-### 3) Configure environment
-Copy the sample and adjust values:
+4. Set up environment variables:
 ```bash
 cp .env.example .env
-```
-Key variables you will see in `.env.example`:
-```
-DATABASE_URL=postgresql://username:password@localhost:5432/scrapmama
-PGHOST=localhost
-PGPORT=5432
-PGUSER=username
-PGPASSWORD=password
-PGDATABASE=scrapmama
-
-SESSION_SECRET=your-secret-key-here
-FLASK_ENV=development
-FLASK_DEBUG=True
+# Edit .env with your database credentials
 ```
 
-> Note: If you prefer SQLite for local development, you can set `DATABASE_URL=sqlite:///instance/database.db` and ensure the `instance/` folder exists.
+5. Create PostgreSQL database:
+```sql
+CREATE DATABASE vangarimama;
+```
 
-### 4) Initialize the database
+6. Initialize the database:
 ```bash
-flask db init        # only once for a new repo
-flask db migrate -m "initial"
-flask db upgrade
+python -c "from app import app, db; app.app_context().push(); db.create_all()"
 ```
 
-### 5) Run the application
-
-Option A — via Flask CLI:
-```bash
-export FLASK_APP=main.py      # Windows (Powershell): $env:FLASK_APP="main.py"
-export FLASK_ENV=development  # optional
-flask run
-```
-
-Option B — run the entry script directly:
+7. Run the application:
 ```bash
 python main.py
 ```
 
-The app serves on `http://127.0.0.1:5000/` by default.
+The application will be available at `http://localhost:5000`
+
+## Usage
+
+1. **Register**: Create an account as User or Collector
+2. **Users**: Post trash details with pickup location
+3. **Collectors**: Browse available pickups and accept them
+4. **Complete**: Mark pickups as completed to award reward points
+
+## Trash Types & Rewards
+
+- **Electronic**: 5 points per unit
+- **Metal**: 4 points per unit
+- **Glass**: 3 points per unit
+- **Plastic**: 2 points per unit
+- **Paper**: 1 point per unit
+- **Organic**: 1 point per unit
 
 ## Project Structure
 
 ```
-vangari-mama/
-├─ app.py                 # Flask app factory and extensions
-├─ main.py                # App entrypoint (runs the server)
-├─ routes.py              # Routes, views, and controller logic
-├─ models.py              # SQLAlchemy models
-├─ forms.py               # Flask-WTF forms
-├─ admin.py               # Admin utilities and views
-├─ instance/
-│  └─ database.db         # SQLite DB (if used locally)
-├─ migrations/            # Alembic migration scripts
-├─ templates/             # Jinja2 HTML templates
-├─ static/
-│  ├─ css/custom.css
-│  └─ js/main.js
-├─ requirements_for_vscode.txt
-├─ pyproject.toml
-├─ .env.example
-└─ README.md
+/
+├── app.py              # Flask app configuration
+├── main.py             # Application entry point
+├── models.py           # Database models (User, TrashPost)
+├── routes.py           # URL routes and view functions
+├── templates/          # HTML templates
+├── static/            # CSS, JS, and assets
+├── requirements_for_vscode.txt  # Python dependencies
+└── .env.example       # Environment variables template
 ```
-
-## Common Tasks
-
-- Create a new migration after changing models:
-  ```bash
-  flask db migrate -m "describe your change"
-  flask db upgrade
-  ```
-
-- Create an admin user (example snippet to run in a Python shell):
-  ```python
-  from app import app, db
-  from models import User
-  with app.app_context():
-      u = User(username="admin", email="admin@example.com", role="admin")
-      u.set_password("change-me")
-      db.session.add(u)
-      db.session.commit()
-  ```
-
-## Testing
-
-You can use any Python test framework (pytest/unittest). A simple pattern:
-```bash
-pip install pytest
-pytest -q
-```
-
-## Deployment Notes
-
-- Set a strong `SESSION_SECRET` in production
-- Use a managed PostgreSQL database and set `DATABASE_URL`
-- Run migrations during deploy: `flask db upgrade`
-- Use a production server such as Gunicorn:
-  ```bash
-  gunicorn -w 4 -b 0.0.0.0:8000 main:app
-  ```
 
 ## Contributing
 
 1. Fork the repository
 2. Create a feature branch
-3. Commit your changes with clear messages
-4. Add/update tests where appropriate
-5. Open a pull request
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
 ## License
 
-This project is open source and available under the MIT License."# VangariMama"
+This project is open source and available under the MIT License."# Vangari-Mama" 
